@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - openai_rg_name=${resource_group}
+        - openai_svc_name=${azure_openai_instance}
+        - subscription=${subscription}
+        - subscription_id=${subscription_id}
+        - OPENAI_API_KEY=${OPENAI_API_KEY}
+        - OPENAI_API_BASE=${OPENAI_API_BASE}
+    
+    volumes:
+      - ..:/workspaces:cached
+
+    #command: /bin/sh -c "while sleep 1000; do :; done"  
